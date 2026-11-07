@@ -4,11 +4,14 @@ import 'package:smartkasir_app/models/produk.dart';
 void main() {
   group('Pengujian Model dan Validasi SmartKasir P11', () {
     test('Verifikasi Data Awal Seeding & Preservasi Promo 20% P10', () {
-      expect(produkAwalSQLite.length, 6);
+      expect(produkAwalSQLite.length, 7);
       
       final kopiSusu = produkAwalSQLite.firstWhere((p) => p.kodeProduk == 'PRD-001');
       expect(kopiSusu.nama, 'Kopi Susu Gula Aren 250ml');
       expect(kopiSusu.diskonPersen, 20); // Memastikan badge promo 20% P10 tidak hilang
+
+      final dessert = produkAwalSQLite.firstWhere((p) => p.kodeProduk == 'PRD-007');
+      expect(dessert.kategori, 'Dessert');
     });
 
     test('Verifikasi Serialisasi toMap dan Deserialisasi fromMap', () {

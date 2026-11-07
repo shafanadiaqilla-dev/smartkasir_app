@@ -120,6 +120,16 @@ final List<Produk> produkAwalSQLite = [
     stok: 8,
     gambarUrl: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500',
   ),
+  const Produk(
+    kodeProduk: 'PRD-007',
+    nama: 'Puding Karamel Silky Special',
+    kategori: 'Dessert',
+    hargaBeli: 8000,
+    hargaJual: 16000,
+    stok: 15,
+    gambarUrl: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500',
+    diskonPersen: 20,
+  ),
 ];
 
 // Alias data dummy untuk menjaga kompatibilitas sementara dashboard P10 sebelum Tahap 5

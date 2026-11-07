@@ -42,6 +42,7 @@ class DatabaseHelper {
         filePath,
         version: 1,
         onCreate: _createDB, // Callback pembentukan tabel saat pertama kali dibuat
+        onOpen: _onOpenDB,   // Memastikan data produk awal (termasuk kategori Dessert) otomatis tersinkron
       );
     }
 
@@ -53,7 +54,22 @@ class DatabaseHelper {
       path,
       version: 1,
       onCreate: _createDB,
+      onOpen: _onOpenDB,
     );
+  }
+
+  // --- KONTROL SINKRONISASI DATA AWAL SAAT BASIS DATA DIBUKA ---
+  Future _onOpenDB(Database db) async {
+    for (final produk in produkAwalSQLite) {
+      final exists = await db.query(
+        'produk',
+        where: 'kode_produk = ?',
+        whereArgs: [produk.kodeProduk],
+      );
+      if (exists.isEmpty) {
+        await db.insert('produk', produk.toMap());
+      }
+    }
   }
 
   // --- 4. DDL: PEMBUATAN STRUKTUR TABEL & SEEDING DATA AWAL ---
