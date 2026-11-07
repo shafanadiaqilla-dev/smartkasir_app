@@ -15,15 +15,14 @@ class SmartKasirApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        // Tantangan Live Tweak 1: Ubah warna tema menjadi Colors.teal
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
+          seedColor: const Color(0xFF1E3A8A),
           brightness: Brightness.light,
         ),
         appBarTheme: const AppBarTheme(
           centerTitle: true,
-          elevation: 2,
-          backgroundColor: Colors.teal,
+          elevation: 0,
+          backgroundColor: Color(0xFF1E3A8A),
           foregroundColor: Colors.white,
         ),
       ),

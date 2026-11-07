@@ -115,7 +115,7 @@ class _FormProdukPageState extends State<FormProdukPage> {
           content: Text(_isEditMode
               ? 'Data produk "${produkData.nama}" berhasil diperbarui!'
               : 'Produk "${produkData.nama}" berhasil disimpan ke SQLite!'),
-          backgroundColor: Colors.teal.shade800,
+          backgroundColor: const Color(0xFF1E3A8A),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -138,9 +138,9 @@ class _FormProdukPageState extends State<FormProdukPage> {
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
         title: Text(_isEditMode ? 'Edit Data Produk' : 'Tambah Produk Baru'),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF1E3A8A),
         foregroundColor: Colors.white,
-        elevation: 2,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -153,15 +153,15 @@ class _FormProdukPageState extends State<FormProdukPage> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.teal.shade50,
+                  color: const Color(0xFFEFF6FF),
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.teal.shade200),
+                  border: Border.all(color: const Color(0xFFBFDBFE)),
                 ),
                 child: Row(
                   children: [
                     Icon(
                       _isEditMode ? Icons.edit_note : Icons.playlist_add_check,
-                      color: Colors.teal.shade800,
+                      color: const Color(0xFF1E3A8A),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -169,9 +169,9 @@ class _FormProdukPageState extends State<FormProdukPage> {
                         _isEditMode
                             ? 'Anda sedang mengedit produk: ${widget.produk!.nama}'
                             : 'Pastikan harga jual kasir lebih besar dari harga beli modal toko.',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13,
-                          color: Colors.teal.shade900,
+                          color: Color(0xFF1E3A8A),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -331,7 +331,7 @@ class _FormProdukPageState extends State<FormProdukPage> {
                 child: ElevatedButton.icon(
                   onPressed: _sedangMenyimpan ? null : _simpanKeDatabase,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
+                    backgroundColor: const Color(0xFF1E3A8A),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),

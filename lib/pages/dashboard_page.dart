@@ -241,8 +241,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 const SizedBox(height: 3),
                 Text(
                   _formatRupiah(item.hargaJual),
-                  style: TextStyle(
-                    color: Colors.teal.shade900,
+                  style: const TextStyle(
+                    color: Color(0xFF1E3A8A),
                     fontWeight: FontWeight.bold,
                     fontSize: 13,
                   ),
@@ -268,7 +268,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   icon: const Icon(
                     Icons.edit_outlined,
                     size: 18,
-                    color: Colors.teal,
+                    color: Color(0xFF1E3A8A),
                   ),
                   tooltip: 'Edit Produk',
                   padding: const EdgeInsets.all(4),
@@ -301,7 +301,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   icon: const Icon(
                     Icons.add_shopping_cart,
                     size: 18,
-                    color: Colors.teal,
+                    color: Color(0xFF1E3A8A),
                   ),
                   tooltip: 'Tambah ke Kasir',
                   padding: const EdgeInsets.all(4),
@@ -312,7 +312,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         content: Text(
                           '${item.nama} dipilih untuk transaksi kasir',
                         ),
-                        backgroundColor: Colors.teal.shade800,
+                        backgroundColor: const Color(0xFF1E3A8A),
                         duration: const Duration(seconds: 1),
                       ),
                     );
@@ -334,7 +334,7 @@ class _DashboardPageState extends State<DashboardPage> {
         title: const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.point_of_sale, color: Colors.amber, size: 24),
+            Icon(Icons.point_of_sale, color: Color(0xFFFBBF24), size: 24),
             SizedBox(width: 8),
             Text(
               'SmartKasir',
@@ -345,9 +345,9 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ],
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF1E3A8A),
         foregroundColor: Colors.white,
-        elevation: 2,
+        elevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.add_circle_outline, color: Colors.white),
@@ -364,18 +364,26 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       body: Column(
         children: [
-          // 1. BANNER TOTAL TRANSAKSI HARIAN (TEMA TEAL P10)
+          // 1. BANNER TOTAL TRANSAKSI HARIAN DENGAN GRADASI BLUE ROYAL SESUAI PDF P11
           Container(
             width: double.infinity,
             margin: const EdgeInsets.all(16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.teal, Colors.teal.shade700],
+              gradient: const LinearGradient(
+                colors: [Color(0xFF2563EB), Color(0xFF1D4ED8)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF2563EB).withValues(alpha: 0.35),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -437,7 +445,7 @@ class _DashboardPageState extends State<DashboardPage> {
               },
               decoration: InputDecoration(
                 hintText: 'Cari nama produk kasir ...',
-                prefixIcon: const Icon(Icons.search, color: Colors.teal),
+                prefixIcon: const Icon(Icons.search, color: Color(0xFF1E3A8A)),
                 suffixIcon: _keywordPencarian.isNotEmpty
                     ? IconButton(
                         icon: const Icon(Icons.clear, size: 18),
@@ -481,7 +489,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: ChoiceChip(
                     label: Text(_kategoriList[index]),
                     selected: isSelected,
-                    selectedColor: Colors.teal,
+                    selectedColor: const Color(0xFF1E3A8A),
                     backgroundColor: Colors.white,
                     labelStyle: TextStyle(
                       color: isSelected ? Colors.white : Colors.black87,
@@ -512,7 +520,7 @@ class _DashboardPageState extends State<DashboardPage> {
               builder: (context, snapshot) {
                 // KONDISI 1: Sedang memuat data (Loading State)
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator(color: Colors.teal));
+                  return const Center(child: CircularProgressIndicator(color: Color(0xFF1E3A8A)));
                 }
 
                 // KONDISI 2: Terjadi kesalahan (Error State)
@@ -582,7 +590,7 @@ class _DashboardPageState extends State<DashboardPage> {
           );
           if (refresh == true) _muatDataProduk();
         },
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF1E3A8A),
         foregroundColor: Colors.white,
         icon: const Icon(Icons.add),
         label: const Text('Tambah Produk'),
