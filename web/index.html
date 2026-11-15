@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -31,16 +18,41 @@
 
   <title>smartkasir_app</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      background: linear-gradient(180deg, #1E3A8A 0%, #2563EB 100%);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .loading-box {
+      text-align: center;
+    }
+    .spinner {
+      margin: 0 auto 20px auto;
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255, 255, 255, 0.25);
+      border-top-color: #F59E0B;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
-
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+  <div class="loading-box" id="loading-indicator">
+    <div class="spinner"></div>
+    <div style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">SmartKasir</div>
+    <div style="font-size: 13px; opacity: 0.85;">Memuat aplikasi...</div>
+  </div>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
