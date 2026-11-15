@@ -1,7 +1,7 @@
 @echo off
 title SmartKasir Web Server
 echo ==================================================
-echo   Menjalankan Server Web SmartKasir (P11)...
+echo   Menjalankan Server Web SmartKasir (P12)...
 echo   Alamat: http://localhost:8080
 echo.
 echo   PENTING:
