@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smartkasir_app/models/produk.dart';
 import 'package:smartkasir_app/models/karyawan.dart';
+import 'package:smartkasir_app/models/pelanggan.dart';
 
 void main() {
   group('Pengujian Model dan Validasi SmartKasir P11', () {
@@ -112,6 +113,77 @@ void main() {
       expect(isValidPin('1234'), isFalse);
       expect(isValidPin('1234567'), isFalse);
       expect(isValidPin(''), isFalse);
+    });
+  });
+
+  group('Pengujian Model dan Validasi SmartKasir P13', () {
+    test('Verifikasi Serialisasi toMap dan Deserialisasi fromMap Pelanggan', () {
+      final cust = Pelanggan(
+        id: 1,
+        kodePelanggan: 'CUST-001',
+        namaPelanggan: 'Warung Bu Siti',
+        nomorWa: '6281234567890',
+        alamat: 'Jl. Hasan Basri No. 12, Banjarmasin',
+        latitude: -3.298280,
+        longitude: 114.588820,
+        createdAt: '2026-11-01 09:00:00',
+      );
+
+      final map = cust.toMap();
+      expect(map['id'], 1);
+      expect(map['kode_pelanggan'], 'CUST-001');
+      expect(map['nama_pelanggan'], 'Warung Bu Siti');
+      expect(map['nomor_wa'], '6281234567890');
+      expect(map['alamat'], 'Jl. Hasan Basri No. 12, Banjarmasin');
+      expect(map['latitude'], -3.298280);
+      expect(map['longitude'], 114.588820);
+      expect(map['created_at'], '2026-11-01 09:00:00');
+
+      final custHasil = Pelanggan.fromMap(map);
+      expect(custHasil.id, cust.id);
+      expect(custHasil.kodePelanggan, cust.kodePelanggan);
+      expect(custHasil.namaPelanggan, cust.namaPelanggan);
+      expect(custHasil.nomorWa, cust.nomorWa);
+      expect(custHasil.alamat, cust.alamat);
+      expect(custHasil.latitude, cust.latitude);
+      expect(custHasil.longitude, cust.longitude);
+      expect(custHasil.hasLocation, isTrue);
+      expect(custHasil.coordinateText, '-3.298280, 114.588820');
+    });
+
+    test('Tantangan 1 P13: Normalisasi Nomor WhatsApp 08... Menjadi 628...', () {
+      String normalizeWa(String input) {
+        String trimmed = input.trim();
+        if (trimmed.startsWith('08')) {
+          return '628${trimmed.substring(2)}';
+        } else if (trimmed.startsWith('+62')) {
+          return trimmed.substring(1);
+        }
+        return trimmed;
+      }
+
+      expect(normalizeWa('0812345678'), '62812345678');
+      expect(normalizeWa('081399887766'), '6281399887766');
+      expect(normalizeWa('+6285712345678'), '6285712345678');
+      expect(normalizeWa('62812345678'), '62812345678');
+    });
+
+    test('Tantangan 2 P13: URL Rute Google Maps dengan travelmode=two_wheeler', () {
+      final lat = -3.298280;
+      final lng = 114.588820;
+      final url = Uri.parse(
+        'https://www.google.com/maps/dir/?api=1&destination=$lat,$lng&travelmode=two_wheeler',
+      );
+
+      expect(url.queryParameters['travelmode'], 'two_wheeler');
+      expect(url.queryParameters['destination'], '-3.29828,114.58882');
+    });
+
+    test('Tantangan 3 P13: Format Subtitle Counter Jumlah Pelanggan', () {
+      String formatSubtitle(int count) => '$count Member Pelanggan Terdaftar';
+
+      expect(formatSubtitle(3), '3 Member Pelanggan Terdaftar');
+      expect(formatSubtitle(0), '0 Member Pelanggan Terdaftar');
     });
   });
 }
